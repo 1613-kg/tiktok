@@ -38,53 +38,56 @@ class _videoPreviewState extends State<videoPreview> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          SizedBox(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height / 1.4,
-            child: VideoPlayer(videoPlayerController),
-          ),
-          Container(
-            child: Column(
-              children: [
-                TextFormField(
-                  controller: songNameController,
-                  decoration: InputDecoration(
-                    labelText: "Enter Song",
-                    icon: Icon(Icons.music_note),
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
-                  controller: captionController,
-                  decoration: InputDecoration(
-                    labelText: "Enter Caption",
-                    icon: Icon(Icons.closed_caption),
-                  ),
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    videoUploadController.uploadVideo(songNameController.text,
-                        captionController.text, widget.videoPath);
-                  },
-                  child: Text(
-                    "Upload",
-                  ),
-                  style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStatePropertyAll<Color>(Colors.white),
-                  ),
-                ),
-              ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height / 1.4,
+              child: VideoPlayer(videoPlayerController),
             ),
-          )
-        ],
+            Container(
+              margin: EdgeInsets.all(15),
+              child: Column(
+                children: [
+                  TextFormField(
+                    controller: songNameController,
+                    decoration: InputDecoration(
+                      labelText: "Enter Song",
+                      icon: Icon(Icons.music_note),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  TextFormField(
+                    controller: captionController,
+                    decoration: InputDecoration(
+                      labelText: "Enter Caption",
+                      icon: Icon(Icons.closed_caption),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      videoUploadController.uploadVideo(songNameController.text,
+                          captionController.text, widget.videoPath);
+                    },
+                    child: Text(
+                      "Upload",
+                    ),
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStatePropertyAll<Color>(Colors.white),
+                    ),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
