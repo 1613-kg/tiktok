@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
+import 'package:tiktok/providers/auth.dart';
 
 import '../models/video.dart';
 
@@ -21,5 +22,21 @@ class VideoController extends GetxController {
       return retVal;
     }));
     super.onInit();
+  }
+
+  likedVideo(String id) async {
+    DocumentSnapshot doc =
+        await FirebaseFirestore.instance.collection("videos").doc(id).get();
+
+    var uid = AuthController.instance.user.uid;
+    if ((doc.data() as dynamic)['likes'].contains(uid)) {
+      await FirebaseFirestore.instance.collection("videos").doc(id).update({
+        'likes': FieldValue.arrayRemove([uid]),
+      });
+    } else {
+      await FirebaseFirestore.instance.collection("videos").doc(id).update({
+        'likes': FieldValue.arrayUnion([uid]),
+      });
+    }
   }
 }

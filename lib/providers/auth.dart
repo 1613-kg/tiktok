@@ -27,6 +27,7 @@ class AuthController extends GetxController {
 //User State Persistence
 
   late Rx<User?> _user;
+  User get user => _user.value!;
 
 // _user  - Nadi
   // _user.bindStream - Nadi Me Color Deko

@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tiktok/screens/comments_screen.dart';
 
 import '../providers/upload_video.dart';
 import '../providers/video_controller.dart';
@@ -60,13 +62,38 @@ class displayScreen extends StatelessWidget {
                           profileButton(
                             profilePicUrl: data.profilePic,
                           ),
-                          videoActivity(
-                            myText: data.likes.length.toString(),
-                            myIcon: Icons.favorite_border_outlined,
+                          InkWell(
+                            onTap: () {
+                              videoController.likedVideo(data.id);
+                            },
+                            child: Column(
+                              children: [
+                                Icon(
+                                  Icons.favorite,
+                                  color: (data.likes.contains(FirebaseAuth
+                                          .instance.currentUser!.uid)
+                                      ? Colors.red
+                                      : Colors.white),
+                                ),
+                                Text(
+                                  "Likes",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ],
+                            ),
                           ),
-                          videoActivity(
-                            myText: data.commentsCount.toString(),
-                            myIcon: Icons.comment,
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          commentScreen(id: data.id)));
+                            },
+                            child: videoActivity(
+                              myText: data.commentsCount.toString(),
+                              myIcon: Icons.comment,
+                            ),
                           ),
                           videoActivity(
                             myText: data.shareCount.toString(),
