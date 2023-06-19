@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tiktok/models/constants.dart';
+import 'package:tiktok/screens/signup_screen.dart';
 
 import '../providers/auth.dart';
 import '../widgets/input_info.dart';
@@ -51,6 +52,15 @@ class LoginScreen extends StatelessWidget {
                       .login(emailController.text, passwordController.text);
                 },
                 child: Text("Login")),
+            SizedBox(
+              height: 30,
+            ),
+            TextButton(
+                onPressed: () {
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => SignUpScreen()));
+                },
+                child: Text("New User?Click Here!"))
           ],
         ),
       ),

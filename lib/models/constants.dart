@@ -1,5 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tiktok/screens/display_screen.dart';
+import 'package:tiktok/screens/profileScreen.dart';
+import 'package:tiktok/screens/searchUser_screen.dart';
 
 import '../screens/addVideo_screen.dart';
 
@@ -9,8 +12,8 @@ const borderColor = Colors.grey;
 
 var pageindex = [
   displayScreen(),
-  Text("search"),
+  searchUser(),
   addVideoScreen(),
   Text("message"),
-  Text("profile"),
+  profileScreen(uid: FirebaseAuth.instance.currentUser!.uid),
 ];

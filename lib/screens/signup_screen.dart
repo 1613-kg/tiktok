@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:tiktok/screens/login_screen.dart';
 
 import '../models/constants.dart';
 import '../providers/auth.dart';
@@ -107,6 +108,15 @@ class SignUpScreen extends StatelessWidget {
                         AuthController.instance.proimg);
                   },
                   child: Text("Sign Up")),
+              SizedBox(
+                height: 30,
+              ),
+              TextButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => LoginScreen()));
+                  },
+                  child: Text("Already have an account?Click Here!")),
             ],
           ),
         ),

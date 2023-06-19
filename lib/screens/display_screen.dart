@@ -61,6 +61,7 @@ class displayScreen extends StatelessWidget {
                         children: [
                           profileButton(
                             profilePicUrl: data.profilePic,
+                            uid: data.uid,
                           ),
                           InkWell(
                             onTap: () {

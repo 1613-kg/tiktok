@@ -45,6 +45,7 @@ dependencies:
   video_compress:
   uuid:
   timeago: ^3.4.0
+  cached_network_image: ^3.2.3
 
 dev_dependencies:
   flutter_test:
